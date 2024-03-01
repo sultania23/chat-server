@@ -2,7 +2,7 @@ package auth
 
 import (
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
+	jwt "github.com/golang-jwt/jwt/v5"
 	"time"
 )
 
@@ -17,9 +17,9 @@ func NewJWTTokenManager(signingKey string) *JWTTokenManager {
 }
 
 func (m *JWTTokenManager) GenerateToken(userId string, ttl time.Duration) (Token, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(ttl).Unix(),
-		Subject:   userId,
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"exp": time.Now().Add(ttl).Unix(),
+		"sub": userId,
 	})
 	var str, err = token.SignedString([]byte(m.signingKey))
 	return Token(str), err

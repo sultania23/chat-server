@@ -9,7 +9,7 @@ import (
 
 const (
 	salt                 = "asd51cg"
-	templatePasswordHash = "6173643531636708baf1a5ec61af402f2f022ce3ba14c814d802c1"
+	templatePasswordHash = "08baf1a5ec61af402f2f022ce3ba14c814d802c1"
 )
 
 func TestHash(t *testing.T) {
