@@ -1,4 +1,4 @@
-# Backend application IDLER chat service
+# Backend application chat service
 
 ###
 - GO 1.18.2
@@ -61,3 +61,5 @@ Command for running docker containers
 ```
 
 Swagger documentation http://localhost:9000/swagger/index.html
+
+TADA enjoy !!
