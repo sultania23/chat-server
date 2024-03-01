@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 	"fmt"
-	"github.com/tuxoo/idler/internal/config"
+	"github.com/sultania23/chat-server/internal/config"
 	"net/http"
 )
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/kavu/go_reuseport"
-	"github.com/tuxoo/idler/internal/config"
+	"github.com/sultania23/chat-server/internal/config"
 	"net/http"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/tuxoo/idler/internal/model/dto"
+	"github.com/sultania23/chat-server/internal/model/dto"
 	"net/http"
 )
 

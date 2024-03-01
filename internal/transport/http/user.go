@@ -2,7 +2,7 @@ package http
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tuxoo/idler/internal/model/dto"
+	"github.com/sultania23/chat-server/internal/model/dto"
 	"net/http"
 )
 

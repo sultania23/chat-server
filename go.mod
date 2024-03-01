@@ -1,4 +1,4 @@
-module github.com/tuxoo/idler
+module github.com/sultania23/chat-server
 
 go 1.22
 

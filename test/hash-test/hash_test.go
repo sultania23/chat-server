@@ -3,7 +3,7 @@ package hash_test
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	"github.com/tuxoo/idler/pkg/hash"
+	"github.com/sultania23/chat-server/pkg/hash"
 	"testing"
 )
 

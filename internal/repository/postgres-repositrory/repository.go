@@ -4,8 +4,8 @@ import (
 	"context"
 	. "github.com/google/uuid"
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/tuxoo/idler/internal/model/dto"
-	"github.com/tuxoo/idler/internal/model/entity"
+	"github.com/sultania23/chat-server/internal/model/dto"
+	"github.com/sultania23/chat-server/internal/model/entity"
 )
 
 const (

@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 	. "github.com/google/uuid"
-	"github.com/tuxoo/idler/internal/model/entity"
-	"github.com/tuxoo/idler/internal/repository/mongo-repository"
+	"github.com/sultania23/chat-server/internal/model/entity"
+	"github.com/sultania23/chat-server/internal/repository/mongo-repository"
 )
 
 type MessageService struct {

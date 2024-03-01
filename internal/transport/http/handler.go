@@ -3,9 +3,9 @@ package http
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/tuxoo/idler/internal/config"
-	"github.com/tuxoo/idler/internal/service"
-	"github.com/tuxoo/idler/pkg/auth"
+	"github.com/sultania23/chat-server/internal/config"
+	"github.com/sultania23/chat-server/internal/service"
+	"github.com/sultania23/chat-server/pkg/auth"
 	"net/http"
 	"time"
 )

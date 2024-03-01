@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	. "github.com/google/uuid"
 	"github.com/gorilla/websocket"
-	"github.com/tuxoo/idler/internal/config"
-	"github.com/tuxoo/idler/internal/service"
-	"github.com/tuxoo/idler/pkg/cache"
+	"github.com/sultania23/chat-server/internal/config"
+	"github.com/sultania23/chat-server/internal/service"
+	"github.com/sultania23/chat-server/pkg/cache"
 	"net/http"
 )
 

@@ -3,14 +3,14 @@ package service
 import (
 	"context"
 	. "github.com/google/uuid"
-	"github.com/tuxoo/idler/internal/model/dto"
-	"github.com/tuxoo/idler/internal/model/entity"
-	mongo_repository "github.com/tuxoo/idler/internal/repository/mongo-repository"
-	postgres_repository "github.com/tuxoo/idler/internal/repository/postgres-repositrory"
-	"github.com/tuxoo/idler/internal/transport/gRPC/client"
-	"github.com/tuxoo/idler/pkg/auth"
-	"github.com/tuxoo/idler/pkg/cache"
-	"github.com/tuxoo/idler/pkg/hash"
+	"github.com/sultania23/chat-server/internal/model/dto"
+	"github.com/sultania23/chat-server/internal/model/entity"
+	mongo_repository "github.com/sultania23/chat-server/internal/repository/mongo-repository"
+	postgres_repository "github.com/sultania23/chat-server/internal/repository/postgres-repositrory"
+	"github.com/sultania23/chat-server/internal/transport/gRPC/client"
+	"github.com/sultania23/chat-server/pkg/auth"
+	"github.com/sultania23/chat-server/pkg/cache"
+	"github.com/sultania23/chat-server/pkg/hash"
 	"time"
 )
 

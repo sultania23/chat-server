@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 	. "github.com/google/uuid"
-	"github.com/tuxoo/idler/internal/model/dto"
-	"github.com/tuxoo/idler/internal/model/entity"
-	postgres_repository "github.com/tuxoo/idler/internal/repository/postgres-repositrory"
+	"github.com/sultania23/chat-server/internal/model/dto"
+	"github.com/sultania23/chat-server/internal/model/entity"
+	postgres_repository "github.com/sultania23/chat-server/internal/repository/postgres-repositrory"
 )
 
 type ConversationService struct {

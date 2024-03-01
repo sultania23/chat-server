@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/gin-gonic/gin"
 	. "github.com/google/uuid"
-	"github.com/tuxoo/idler/pkg/auth"
+	"github.com/sultania23/chat-server/pkg/auth"
 	"net/http"
 	"strings"
 )

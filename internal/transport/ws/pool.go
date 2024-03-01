@@ -3,7 +3,7 @@ package ws
 import (
 	"fmt"
 	. "github.com/google/uuid"
-	"github.com/tuxoo/idler/internal/model/entity"
+	"github.com/sultania23/chat-server/internal/model/entity"
 )
 
 type Pool struct {

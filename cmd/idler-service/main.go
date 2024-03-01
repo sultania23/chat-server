@@ -1,6 +1,6 @@
 package main
 
-import app "github.com/tuxoo/idler/internal/app/idler-service"
+import app "github.com/sultania23/chat-server/internal/app/idler-service"
 
 const (
 	configPath = "config/config"

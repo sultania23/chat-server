@@ -4,8 +4,8 @@ import (
 	"context"
 	"github.com/gorilla/websocket"
 	"github.com/sirupsen/logrus"
-	"github.com/tuxoo/idler/internal/model/entity"
-	"github.com/tuxoo/idler/internal/service"
+	"github.com/sultania23/chat-server/internal/model/entity"
+	"github.com/sultania23/chat-server/internal/service"
 	"time"
 )
 

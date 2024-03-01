@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	"github.com/tuxoo/idler/pkg/cache"
+	"github.com/sultania23/chat-server/pkg/cache"
 	"testing"
 )
 

@@ -3,7 +3,7 @@ package mongo_repository
 import (
 	"context"
 	. "github.com/google/uuid"
-	"github.com/tuxoo/idler/internal/model/entity"
+	"github.com/sultania23/chat-server/internal/model/entity"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
