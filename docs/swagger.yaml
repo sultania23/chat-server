@@ -1,0 +1,362 @@
+basePath: /api/v1
+definitions:
+  dto.ConversationDTO:
+    properties:
+      name:
+        type: string
+      owner:
+        type: integer
+    required:
+    - name
+    type: object
+  dto.SignInDTO:
+    properties:
+      email:
+        example: kill-77@mail.ru
+        maxLength: 64
+        type: string
+      password:
+        example: qwerty
+        maxLength: 64
+        minLength: 6
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dto.SignUpDTO:
+    properties:
+      email:
+        example: kill-77@mail.ru
+        maxLength: 64
+        type: string
+      name:
+        example: alex
+        maxLength: 64
+        minLength: 2
+        type: string
+      password:
+        example: qwerty
+        maxLength: 64
+        minLength: 6
+        type: string
+    required:
+    - email
+    - name
+    - password
+    type: object
+  dto.UserDTO:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    required:
+    - email
+    - name
+    type: object
+  http.errorResponse:
+    properties:
+      errorTime:
+        example: "2022-06-07 22:22:20"
+        type: string
+      message:
+        example: Token is expired
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API Server for keep in touch
+  title: Idler Application
+  version: "1.0"
+paths:
+  /conversation:
+    get:
+      consumes:
+      - application/json
+      description: gets all conversations
+      operationId: allConversations
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.ConversationDTO'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      security:
+      - Bearer: []
+      summary: Get Conversations
+      tags:
+      - conversation
+    post:
+      consumes:
+      - application/json
+      description: creating new conversation
+      operationId: createConversation
+      parameters:
+      - description: conversation information
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ConversationDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ""
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      security:
+      - Bearer: []
+      summary: Create Conversation
+      tags:
+      - conversation
+  /conversation/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: deletes conversation by ID
+      operationId: deleteConversationById
+      parameters:
+      - description: Conversation ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: ""
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      security:
+      - Bearer: []
+      summary: Delete Conversation By ID
+      tags:
+      - conversation
+    get:
+      consumes:
+      - application/json
+      description: gets conversation by ID
+      operationId: getConversationById
+      parameters:
+      - description: Conversation ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ConversationDTO'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      security:
+      - Bearer: []
+      summary: GET Conversation By ID
+      tags:
+      - conversation
+  /user:
+    get:
+      consumes:
+      - application/json
+      description: gets all users
+      operationId: allUsers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.UserDTO'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      security:
+      - Bearer: []
+      summary: Users
+      tags:
+      - user
+  /user/{email}:
+    get:
+      consumes:
+      - application/json
+      description: gets user by email
+      operationId: userByEmail
+      parameters:
+      - description: User email
+        in: path
+        name: email
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserDTO'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      security:
+      - Bearer: []
+      summary: User By Email
+      tags:
+      - user
+  /user/profile:
+    get:
+      consumes:
+      - application/json
+      description: gets current profile user
+      operationId: currentUser
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserDTO'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      security:
+      - Bearer: []
+      summary: User Profile
+      tags:
+      - user
+  /user/sign-in:
+    post:
+      consumes:
+      - application/json
+      description: authentication new user
+      operationId: userSignIn
+      parameters:
+      - description: credentials
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/dto.SignInDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: token
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      summary: User SignIn
+      tags:
+      - user-auth
+  /user/sign-up:
+    post:
+      consumes:
+      - application/json
+      description: registering new user
+      operationId: userSignUp
+      parameters:
+      - description: account information
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/dto.SignUpDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ""
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.errorResponse'
+      summary: User SignUp
+      tags:
+      - user-auth
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

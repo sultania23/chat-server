@@ -1,0 +1,100 @@
+version: "3.8"
+
+services:
+  postgres-idler:
+    container_name: postgres-idler
+    image: postgres:${POSTGRES_VERSION}
+    restart: on-failure
+    env_file:
+      - .env
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
+    volumes:
+      - ./.docker-volumes/postgres:/var/lib/postgresql/data
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - ${POSTGRES_PORT}:5432
+    networks:
+      idler-net:
+        ipv4_address: 172.28.1.1
+
+  liquibase-idler:
+    container_name: liquibase-idler
+    image: liquibase/liquibase:${LIQUIBASE_VERSION}
+    restart: on-failure
+    command: --defaultsFile=liquibase.properties update
+    depends_on:
+      - postgres-idler
+    volumes:
+      - ./db/:/liquibase/changelog/
+      - ./db/:/liquibase/classpath/
+      - ./db/liquibase.properties:/liquibase/liquibase.properties
+    networks:
+      idler-net:
+        ipv4_address: 172.28.1.2
+
+  mongo-idler:
+    container_name: mongo-idler
+    image: mongo:${MONGO_VERSION}
+    restart: on-failure
+    env_file:
+      - .env
+    volumes:
+      - ./.docker-volumes/mongo:/data/db
+      - ./mongo:/data/configdb
+    ports:
+      - ${MONGO_PORT}:27017
+    networks:
+      idler-net:
+        ipv4_address: 172.28.1.4
+
+  grafana-idler:
+    container_name: grafana-idler
+    image: grafana/grafana:${GRAFANA_VERSION}
+    restart: on-failure
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./grafana:/etc/grafana/provisioning
+      - ./.docker-volumes/grafana:/var/lib/grafana
+    ports:
+      - ${GRAFANA_PORT}:3000
+    networks:
+      idler-net:
+        ipv4_address: 172.28.1.5
+
+  prometheus-idler:
+    container_name: prometheus-idler
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./.docker-volumes/prometheus:/prometheus
+    ports:
+      - ${PROMETHEUS_PORT}:9090
+    networks:
+      idler-net:
+        ipv4_address: 172.28.1.6
+
+  app-idler:
+    container_name: app-idler
+    build: ./
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - ${HTTP_PORT}:9000
+    depends_on:
+      - postgres-idler
+      - mongo-idler
+    networks:
+      idler-net:
+        ipv4_address: 172.28.1.7
+
+networks:
+  idler-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16

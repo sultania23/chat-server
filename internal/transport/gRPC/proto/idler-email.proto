@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package idler_email;
+
+option go_package = "./api";
+
+service MailSenderService {
+  rpc SendMail(Mail) returns (google.protobuf.Empty) {}
+}
+
+message Mail {
+  string Address = 1;
+}

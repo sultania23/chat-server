@@ -1,0 +1,36 @@
+http:
+  host: localhost
+  port: 9000
+  maxHeaderMegabytes: 1
+  readTimeout: 5s
+  writeTimeout: 10s
+
+auth:
+  tokenTTL: 180m
+
+postgres:
+  host: localhost
+  port: 5432
+  dbname: idler
+  maxConns: 25
+  minConns: 2
+  maxConnLifetime: 120s
+  maxConnIdleTime: 300s
+
+cache:
+  size: 100000
+  expires: 4h
+
+websocket:
+  port: 8000
+  readBufferSize: 1024
+  writeBufferSize: 1024
+
+mongo:
+  host: localhost
+  port: 27017
+  dbname: idler
+
+mail:
+  host: localhost
+  port: 8088
