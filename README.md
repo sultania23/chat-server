@@ -1,7 +1,7 @@
 # Backend application chat service
 
 ###
-- GO 1.18.2
+- GO 1.22
 - GIN
 - PGX
 - GCACHE
